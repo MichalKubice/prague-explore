@@ -11,6 +11,21 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Responsive Variables */
+  --header-height: 56px;
+  --container-padding: 12px;
+  --map-max-height: 60dvh;
+  --controls-margin: 12px;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --header-height: 72px;
+    --container-padding: 24px;
+    --map-max-height: 70vh;
+    --controls-margin: 32px;
+  }
 }
 
 a {

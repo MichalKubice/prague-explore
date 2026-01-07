@@ -36,13 +36,13 @@ export function MultipleChoiceQuestionView({ question, onAnswer, disabled, selec
             onClick={() => onAnswer(index)}
             disabled={disabled}
             style={{
-              padding: '12px 16px',
+              padding: '10px 14px',
               textAlign: 'left',
               background: backgroundColor,
               border: `2px solid ${borderColor}`,
-              borderRadius: '8px',
+              borderRadius: '12px',
               cursor: disabled ? 'default' : 'pointer',
-              fontSize: '1em',
+              fontSize: '0.9rem',
               color: '#1e293b',
               transition: 'all 0.2s ease',
               outline: 'none'

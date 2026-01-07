@@ -12,13 +12,13 @@ interface QuestionCardProps {
 export function QuestionCard({ prompt, explanation, isAnswered, isCorrect, children, onNext }: QuestionCardProps) {
   return (
     <div style={{ 
-      padding: '20px', 
-      borderRadius: '12px', 
+      padding: '16px', 
+      borderRadius: '16px', 
       background: '#f8f9fa', 
       border: '1px solid #e9ecef',
-      marginBottom: '20px'
+      marginBottom: '16px'
     }}>
-      <h3 style={{ marginTop: 0, color: '#2d3436', fontSize: '1.2em' }}>{prompt}</h3>
+      <h3 style={{ marginTop: 0, color: '#2d3436', fontSize: '1.1rem', lineHeight: 1.4 }}>{prompt}</h3>
       
       <div style={{ marginBottom: '20px' }}>
         {children}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export function PragueLogo() {
+export function PragueLogo({ height = 32 }: { height?: number }) {
   const [colorIndex, setColorIndex] = useState(0);
   
   // Official Prague branding colors
@@ -31,7 +31,7 @@ export function PragueLogo() {
       padding: '4px'
     }}>
       <div style={{
-        fontSize: '1.75rem',
+        fontSize: `${height * 0.875}px`,
         fontWeight: 900,
         letterSpacing: '-0.02em',
         color: '#1e293b',
@@ -43,24 +43,24 @@ export function PragueLogo() {
       <div style={{ 
         display: 'flex', 
         flexDirection: 'column', 
-        gap: '4px' 
+        gap: `${height / 8}px` 
       }}>
         <div style={{ 
-          width: '28px', 
-          height: '5px', 
+          width: `${height * 0.875}px`, 
+          height: `${height / 6.4}px`, 
           background: currentColor,
           transition: 'background 0.8s ease'
         }} />
         <div style={{ 
-          width: '28px', 
-          height: '5px', 
+          width: `${height * 0.875}px`, 
+          height: `${height / 6.4}px`, 
           background: currentColor,
           transition: 'background 0.8s ease',
           opacity: 0.6
         }} />
         <div style={{ 
-          width: '28px', 
-          height: '5px', 
+          width: `${height * 0.875}px`, 
+          height: `${height / 6.4}px`, 
           background: currentColor,
           transition: 'background 0.8s ease',
           opacity: 0.3

@@ -174,18 +174,22 @@ export function MapView({ zones, progress, onProgressUpdate }: MapViewProps) {
     <div style={{ position: 'relative', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       {toast && (
         <div style={{
-          position: 'fixed', top: '24px', right: '24px', padding: '16px 32px', borderRadius: '16px',
+          position: 'fixed', top: '16px', left: '50%', transform: 'translateX(-50%)', 
+          padding: '12px 24px', borderRadius: '16px',
           backgroundColor: toast.type === 'success' ? '#10b981' : '#ef4444', color: 'white',
-          fontWeight: 'bold', zIndex: 2000, boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04)',
-          animation: 'slideIn 0.3s ease-out'
+          fontWeight: 'bold', zIndex: 2000, boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)',
+          animation: 'slideIn 0.3s ease-out',
+          width: 'max-content',
+          maxWidth: '90vw',
+          textAlign: 'center'
         }}>
           {toast.message}
-          <style>{`@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }`}</style>
+          <style>{`@keyframes slideIn { from { transform: translate(-50%, -20px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }`}</style>
         </div>
       )}
 
       {progress.phase === 'numbering' && (
-        <div style={{ width: '100%', maxWidth: '1400px' }}>
+        <div style={{ width: '100%' }}>
           <NumberingController 
             progress={progress} 
             totalZones={zones.length} 
@@ -196,8 +200,15 @@ export function MapView({ zones, progress, onProgressUpdate }: MapViewProps) {
       )}
 
       {activeQuizZone ? (
-        <div style={{ width: '100%', maxWidth: '800px', padding: '40px', background: '#fff', borderRadius: '32px', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.1)' }}>
-          <h2 style={{ textAlign: 'center', marginBottom: '40px', fontSize: '2rem', fontWeight: 800 }}>Kvíz: {activeQuizZone.name}</h2>
+        <div style={{ 
+          width: '100%', 
+          maxWidth: '800px', 
+          padding: '24px var(--container-padding)', 
+          background: '#fff', 
+          borderRadius: '24px', 
+          boxShadow: '0 10px 25px -5px rgba(0,0,0,0.05)' 
+        }}>
+          <h2 style={{ textAlign: 'center', marginBottom: '32px', fontSize: '1.5rem', fontWeight: 800 }}>Kvíz: {activeQuizZone.name}</h2>
           <QuizRunner 
             zoneId={activeQuizZone.id} 
             questions={activeQuizZone.questions}
@@ -213,17 +224,25 @@ export function MapView({ zones, progress, onProgressUpdate }: MapViewProps) {
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
           <div style={{ 
-            background: '#fff', borderRadius: '32px', padding: '20px', 
-            boxShadow: '0 20px 25px -5px rgba(0,0,0,0.05)', border: '1px solid #f1f5f9',
+            background: '#fff', borderRadius: '24px', padding: '12px', 
+            boxShadow: '0 10px 15px -3px rgba(0,0,0,0.05)', border: '1px solid #f1f5f9',
             position: 'relative',
-            display: 'inline-block',
-            width: 'fit-content'
+            width: '100%',
+            overflow: 'hidden',
+            display: 'flex',
+            justifyContent: 'center'
           }}>
             <svg 
               width={SVG_WIDTH} 
               height={mapMetrics.svgHeight} 
               viewBox={`0 0 ${SVG_WIDTH} ${mapMetrics.svgHeight}`}
-              style={{ overflow: 'visible', maxWidth: '100%', height: 'auto' }}
+              style={{ 
+                overflow: 'visible', 
+                maxWidth: '100%', 
+                height: 'auto',
+                width: '100%',
+                maxHeight: 'var(--map-max-height)'
+              }}
             >
               <defs>
                 <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
@@ -286,10 +305,10 @@ export function MapView({ zones, progress, onProgressUpdate }: MapViewProps) {
                     {isHighlighted && (
                       <g style={{ pointerEvents: 'none', transition: 'all 0.3s ease' }}>
                         <circle 
-                          cx={labelPos.x} cy={labelPos.y} r={isHovered ? '40' : '32'} 
+                          cx={labelPos.x} cy={labelPos.y} r={isHovered ? '36' : '30'} 
                           fill="white" 
                           stroke={isPerfect ? '#f59e0b' : (isCompleted ? '#10b981' : 'transparent')}
-                          strokeWidth={isPerfect || isCompleted ? '4' : '0'}
+                          strokeWidth={isPerfect || isCompleted ? '3' : '0'}
                           filter={isPerfect ? 'url(#glow)' : 'none'}
                           style={{ 
                             filter: isHovered ? 'drop-shadow(0 6px 8px rgba(0,0,0,0.2))' : 'drop-shadow(0 3px 6px rgba(0,0,0,0.1))', 
@@ -305,7 +324,7 @@ export function MapView({ zones, progress, onProgressUpdate }: MapViewProps) {
                         </text>
                         {isCompleted && (
                           <circle 
-                            cx={labelPos.x + 12} cy={labelPos.y - 12} r="4"
+                            cx={labelPos.x + 10} cy={labelPos.y - 10} r="4"
                             fill={isPerfect ? '#f59e0b' : '#10b981'}
                             style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.2))' }}
                           />
@@ -327,15 +346,17 @@ export function MapView({ zones, progress, onProgressUpdate }: MapViewProps) {
           </div>
           
           <div style={{ 
-            marginTop: '32px', 
-            padding: '12px 28px', 
+            marginTop: '24px', 
+            padding: '12px 20px', 
             background: '#fff', 
             borderRadius: '100px', 
             color: '#64748b', 
-            fontSize: '0.9rem',
+            fontSize: '0.85rem',
             fontWeight: 600,
             boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)',
-            border: '1px solid #f1f5f9'
+            border: '1px solid #f1f5f9',
+            textAlign: 'center',
+            maxWidth: '100%'
           }}>
             {progress.phase === 'numbering' 
               ? `🎯 Odhaleno: ${Object.keys(progress.numbering?.assignedNumbers || {}).length} z ${zones.length} částí`

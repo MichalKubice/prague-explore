@@ -103,25 +103,25 @@ export function QuizRunner({ zoneId, questions, onFinish, onCancel }: QuizRunner
   const question = selectedQuestions[currentIndex];
 
   return (
-    <div style={{ padding: '20px', background: '#fff', borderRadius: '16px', border: '1px solid #e5e7eb', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)', color: '#1e293b' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-        <span style={{ fontSize: '0.9rem', color: '#6b7280', fontWeight: 'bold' }}>
+    <div style={{ padding: '0', background: '#fff', borderRadius: '16px', color: '#1e293b' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+        <span style={{ fontSize: '0.8rem', color: '#6b7280', fontWeight: 'bold' }}>
           Otázka {currentIndex + 1} z {selectedQuestions.length}
         </span>
         <button 
           onClick={onCancel}
-          style={{ background: 'none', border: 'none', color: '#ef4444', cursor: 'pointer', fontSize: '0.9rem' }}
+          style={{ background: 'none', border: 'none', color: '#ef4444', cursor: 'pointer', fontSize: '0.8rem', padding: '4px' }}
         >
-          Ukončit kvíz
+          Ukončit
         </button>
       </div>
 
-      <div style={{ height: '6px', background: '#f3f4f6', borderRadius: '3px', marginBottom: '30px' }}>
+      <div style={{ height: '4px', background: '#f3f4f6', borderRadius: '2px', marginBottom: '24px' }}>
         <div style={{ 
           height: '100%', 
           width: `${((currentIndex + 1) / selectedQuestions.length) * 100}%`, 
           background: '#0ea5e9', 
-          borderRadius: '3px',
+          borderRadius: '2px',
           transition: 'width 0.3s ease'
         }} />
       </div>
@@ -138,7 +138,7 @@ export function QuizRunner({ zoneId, questions, onFinish, onCancel }: QuizRunner
             question={question} 
             onAnswer={handleAnswer} 
             disabled={isAnswered}
-            selectedIndex={null} // We don't need to show what they picked if we use the QuestionCard's state
+            selectedIndex={null} 
           />
         ) : (
           <TrueFalseQuestionView 

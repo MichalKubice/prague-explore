@@ -31,15 +31,18 @@ export function NumberingController({ progress, totalZones, onUpdate, onComplete
   return (
     <>
       <div style={{
-        padding: '24px',
+        padding: '20px',
         background: 'linear-gradient(135deg, #ffffff 0%, #f9fafb 100%)',
-        borderRadius: '20px',
-        boxShadow: '0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.02)',
+        borderRadius: '24px',
+        boxShadow: '0 10px 15px -3px rgba(0,0,0,0.05)',
         border: '1px solid #f3f4f6',
         marginBottom: '32px',
         display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
         justifyContent: 'space-between',
         alignItems: 'center',
+        gap: '20px',
         position: 'relative',
         overflow: 'hidden'
       }}>
@@ -55,41 +58,39 @@ export function NumberingController({ progress, totalZones, onUpdate, onComplete
           borderRadius: '50%'
         }} />
 
-        <div>
-          <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 800, color: '#111827', letterSpacing: '-0.025em' }}>
-            {progress.testMode ? 'Testovací režim: Odhalování' : 'Fáze 1: Objevování Prahy'}
+        <div style={{ flex: '1 1 300px' }}>
+          <h2 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 800, color: '#111827', letterSpacing: '-0.025em' }}>
+            {progress.testMode ? 'Odhalování' : 'Objevování Prahy'}
           </h2>
-          <p style={{ margin: '6px 0 0', color: '#6b7280', fontSize: '0.95rem' }}>
-            {progress.testMode 
-              ? 'Klikni na libovolnou část mapy a napiš její název.'
-              : 'Klikni na libovolnou část mapy a odhal ji správným názvem.'}
+          <p style={{ margin: '4px 0 0', color: '#6b7280', fontSize: '0.85rem' }}>
+            Klikni na libovolnou část mapy a odhal ji správným názvem.
           </p>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
           {!progress.testMode && (
             <div style={{ textAlign: 'right' }}>
-              <div style={{ color: '#6b7280', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '4px', fontWeight: 600 }}>
+              <div style={{ color: '#6b7280', fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '4px', fontWeight: 600 }}>
                 Aktuální cíl
               </div>
-              <div style={{ fontSize: '1.75rem', fontWeight: 900, color: '#4f46e5', lineHeight: 1 }}>
-                Najdi Prahu {currentNumber > totalZones ? '✔' : currentNumber}
+              <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#4f46e5', lineHeight: 1 }}>
+                Praha {currentNumber > totalZones ? '✔' : currentNumber}
               </div>
             </div>
           )}
 
           <div style={{ 
-            padding: '12px 20px', 
+            padding: '10px 16px', 
             background: livesLeft === 1 ? '#fef2f2' : '#f0f9ff',
             borderRadius: '12px',
             textAlign: 'center',
             minWidth: '100px',
             border: `1px solid ${livesLeft === 1 ? '#fecaca' : '#e0f2fe'}`
           }}>
-            <div style={{ color: livesLeft === 1 ? '#dc2626' : '#0369a1', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', marginBottom: '4px' }}>
+            <div style={{ color: livesLeft === 1 ? '#dc2626' : '#0369a1', fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', marginBottom: '4px' }}>
               Životy
             </div>
-            <div style={{ fontSize: '1.25rem', display: 'flex', gap: '4px', justifyContent: 'center' }}>
+            <div style={{ fontSize: '1.1rem', display: 'flex', gap: '4px', justifyContent: 'center' }}>
               {hearts}
               {emptyHearts}
             </div>

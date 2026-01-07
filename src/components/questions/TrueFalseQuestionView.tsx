@@ -42,12 +42,12 @@ export function TrueFalseQuestionView({ question, onAnswer, disabled, selectedAn
             disabled={disabled}
             style={{
               flex: 1,
-              padding: '15px',
+              padding: '12px',
               background: backgroundColor,
               border: `2px solid ${borderColor}`,
-              borderRadius: '8px',
+              borderRadius: '12px',
               cursor: disabled ? 'default' : 'pointer',
-              fontSize: '1.1em',
+              fontSize: '1rem',
               fontWeight: 'bold',
               color: '#1e293b',
               transition: 'all 0.2s ease'
